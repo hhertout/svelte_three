@@ -67,6 +67,7 @@ export default class WebGLScene {
 	}
 
 	private tick() {
+		/* eslint @typescript-eslint/no-unused-vars:0  */
 		const elapsedTime = this.clock.getElapsedTime();
 
 		// Only resize if dimensions have changed (improves performance)

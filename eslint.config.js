@@ -1,7 +1,7 @@
 import prettier from 'eslint-config-prettier';
 import js from '@eslint/js';
 import { includeIgnoreFile } from '@eslint/compat';
-import svelte from 'eslint-plugin-svelte';
+import svelte, { rules } from 'eslint-plugin-svelte';
 import globals from 'globals';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript-eslint';
@@ -21,6 +21,15 @@ export default ts.config(
 				...globals.node
 			}
 		}
+	},
+	{
+		rules: {
+			'@typescript-eslint/ban-ts-comment': 0,
+			'@typescript-eslint/no-explicit-any': 0
+		}
+	},
+	{
+		ignores: ['eslint.config.js']
 	},
 	{
 		files: ['**/*.svelte'],

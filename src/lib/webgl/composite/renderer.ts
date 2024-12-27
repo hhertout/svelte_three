@@ -42,9 +42,8 @@ export default class Renderer implements WebGLUpdatableInterface {
 
 	/**
 	 * Initializes the renderer with specific settings.
-	 * @param {Scene} _ - The scene to initialize (unused).
 	 */
-	init(_: Scene): void {
+	init(): void {
 		this.renderer.toneMapping = CineonToneMapping;
 		this.renderer.toneMappingExposure = 1.75;
 		this.renderer.shadowMap.enabled = true;
