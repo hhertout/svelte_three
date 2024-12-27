@@ -10,7 +10,7 @@ export default class Cube implements WebGLObjectInterface {
 	public material: ShaderMaterial;
 
 	constructor() {
-		this.geometry = new BoxGeometry(5,5,5);
+		this.geometry = new BoxGeometry(5, 5, 5);
 		this.material = new ShaderMaterial({
 			vertexShader,
 			fragmentShader

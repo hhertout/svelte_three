@@ -15,14 +15,14 @@
 		scene.init();
 	});
 
-    onDestroy(() => {
-        if(scene instanceof WebGLScene) {
-            scene.destroy()
-        }
-    })
+	onDestroy(() => {
+		if (scene instanceof WebGLScene) {
+			scene.destroy();
+		}
+	});
 </script>
 
-<div  {...{...props, id: `${props.id}-wrapper`}}>
+<div {...{ ...props, id: `${props.id}-wrapper` }}>
 	<canvas id={props.id} class="canvas-element"></canvas>
 </div>
 
