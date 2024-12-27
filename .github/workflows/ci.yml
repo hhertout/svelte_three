@@ -1,0 +1,48 @@
+name: 🧪 Test & build
+
+on:
+  pull_request:
+    branches: ['main', 'dev']
+
+defaults:
+  run:
+    working-directory: client
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    env:
+        PUBLIC_NODE_ENV: development
+    strategy:
+      matrix:
+        node-version: [21.x, 22.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+      - run: npm ci
+      - run: npm test
+
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PUBLIC_NODE_ENV: production
+    strategy:
+      matrix:
+        node-version: [21.x, 22.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+      - run: npm ci
+      - run: npm run build
+      - name: Build Docker image
+        run: docker build -t image:latest -f Dockerfile .
